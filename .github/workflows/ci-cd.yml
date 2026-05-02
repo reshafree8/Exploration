@@ -25,7 +25,7 @@ jobs:
 
       # 🧪 Step 4: Run Tests
       - name: 🧪 Run Tests
-        run: npm test || echo "⚠️ No tests found or failed (ignored for CI demo)"
+        run: npm test || echo "⚠️ No tests found or failed (ignored for CI demo), Useful If we want to create feature for our website we can write the test files"
 
       # 🏗️ Step 5: Build Check
       - name: 🏗️ Build Check
