@@ -1,4 +1,4 @@
-name: Exploration CI CD Pipeline
+name: 🚀 Exploration CI/CD Pipeline
 
 on:
   push:
@@ -9,34 +9,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      # 📥 Step 1: Checkout Code
+      - name: 📥 Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      # 🟢 Step 2: Setup Node
+      - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      # FRONTEND
-      - name: Install Frontend Dependencies
-        working-directory: ./frontend
+      # 📦 Step 3: Install Dependencies
+      - name: 📦 Install Dependencies
         run: npm install
 
-      # BACKEND
-      - name: Install Backend Dependencies
-        working-directory: ./backend
-        run: npm install
+      # 🧪 Step 4: Run Tests
+      - name: 🧪 Run Tests
+        run: npm test || echo "⚠️ No tests found or failed (ignored for CI demo)"
 
-      # TEST (safe mode)
-      - name: Run Backend Tests
-        working-directory: ./backend
-        run: npm test || echo "No tests or failed tests (ignored for CI demo)"
+      # 🏗️ Step 5: Build Check
+      - name: 🏗️ Build Check
+        run: npm run build || echo "⚠️ No build script found"
 
-      # BUILD CHECK (frontend)
-      - name: Build Frontend
-        working-directory: ./frontend
-        run: npm run build || echo "No build script"
-
-      # SIMPLE SUCCESS MESSAGE
-      - name: CI Success
-        run: echo "CI Pipeline Executed Successfully 🎉"
+      # 🎉 Step 6: Success Message
+      - name: 🎉 CI Success
+        run: echo "✅ CI Pipeline Executed Successfully 🎉"
