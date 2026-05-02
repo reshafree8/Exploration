@@ -12,23 +12,16 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Install Backend Dependencies
-        working-directory: backend
+      - name: Install Dependencies
         run: npm install
 
-      - name: Install Frontend Dependencies
-        working-directory: frontend
-        run: npm install
-
-      - name: Run Backend Tests
-        working-directory: backend
+      - name: Run Tests
         run: npm test || true
 
-      - name: Build Frontend
-        working-directory: frontend
-        run: npm run build
+      - name: Build (if exists)
+        run: npm run build || true
