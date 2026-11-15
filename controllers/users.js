@@ -31,12 +31,16 @@ module.exports.renderLoginForm = (req, res) => {
     res.render("users/login.ejs");
 };
 
-module.exports.login = (req, res) => {
-    req.flash("success", "Welcome back to Exploration! You are logged in.");
 
-    let redirectUrl = res.locals.redirectUrl || "/listings";
+module.exports.login = (req, res) => {
+    req.flash("success", "Welcome back to Exploration!");
+
+    const redirectUrl = req.session.redirectUrl || "/listings";
+    delete req.session.redirectUrl;
+
     res.redirect(redirectUrl);
 };
+
 
 module.exports.logout = (req, res, next) => {
     req.logout((err) => {
