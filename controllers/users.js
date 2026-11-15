@@ -26,18 +26,10 @@ module.exports.signup = async (req, res, next) => {
             return res.redirect("/listings");
         });
     } catch (e) {
-    console.log("SIGNUP ERROR:", e);
-
-    if (e.code === 11000 && e.keyPattern?.email) {
-        req.flash(
-            "error",
-            "Email already registered! Please login or use another email."
-        );
+        console.log("SIGNUP ERROR:", e);
+        req.flash("error", e.message);
         return res.redirect("/signup");
     }
-
-    req.flash("error", "Something went wrong. Please try again.");
-    return res.redirect("/signup");
 };
 
 module.exports.renderLoginForm = (req, res) => {
