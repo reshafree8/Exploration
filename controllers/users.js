@@ -34,12 +34,12 @@ module.exports.renderLoginForm = (req, res) => {
 module.exports.login = (req, res) => {
     req.flash("success", "Welcome back to Exploration!");
 
-    const redirectUrl = req.session.redirectUrl || "/listings";
+    const redirectUrl = res.locals.redirectUrl || "/listings";
+
     delete req.session.redirectUrl;
 
-    res.redirect(redirectUrl);
+    return res.redirect(redirectUrl);
 };
-
 
 module.exports.logout = (req, res, next) => {
     req.logout((err) => {
