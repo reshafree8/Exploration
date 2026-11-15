@@ -34,6 +34,11 @@ module.exports.signup = async (req, res, next) => {
             return res.redirect("/signup");
         }
 
+        if (e.name === "UserExistsError") {
+            req.flash("error", "This username is already registered. Please choose another username.");
+            return res.redirect("/signup");
+        }
+
         req.flash("error", "Something went wrong. Please try again.");
         return res.redirect("/signup");
     }
