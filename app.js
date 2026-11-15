@@ -99,6 +99,10 @@ app.use((req,res,next)=>{
 });
 
 
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
+
 //all the listing routes are in ../reviews/listing.js
 app.use("/listings",listingsRouter);
 //all the listing routes are in ../reviews/review.js
