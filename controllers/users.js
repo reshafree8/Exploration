@@ -38,7 +38,7 @@ module.exports.signup = async (req, res, next) => {
 
     req.flash("error", "Something went wrong. Please try again.");
     return res.redirect("/signup");
-}
+};
 
 module.exports.renderLoginForm = (req, res) => {
     res.render("users/login.ejs");
