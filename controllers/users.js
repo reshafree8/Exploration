@@ -25,9 +25,16 @@ module.exports.signup = async (req, res, next) => {
             req.flash("success", "Welcome to Exploration!");
             return res.redirect("/listings");
         });
+
     } catch (e) {
         console.log("SIGNUP ERROR:", e);
-        req.flash("error", e.message);
+
+        if (e.code === 11000 && e.keyPattern?.email) {
+            req.flash("error", "This email is already registered. Please use another email or login.");
+            return res.redirect("/signup");
+        }
+
+        req.flash("error", "Something went wrong. Please try again.");
         return res.redirect("/signup");
     }
 };
@@ -35,7 +42,6 @@ module.exports.signup = async (req, res, next) => {
 module.exports.renderLoginForm = (req, res) => {
     res.render("users/login.ejs");
 };
-
 
 module.exports.login = (req, res) => {
     req.flash("success", "Welcome back to Exploration!");
