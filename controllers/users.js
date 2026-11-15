@@ -31,14 +31,14 @@ module.exports.signup = async (req, res, next) => {
 
         if (e.code === 11000 && e.keyPattern?.email) {
             req.flash("error", "This email is already registered. Please use another email or login.");
+            console.log("DUPLICATE EMAIL FLASH SET");
             return res.redirect("/signup");
         }
 
-        if (e.code === 11000 && e.keyPattern?.email) {
-    req.flash("error", "TEST: This email is already registered!");
-    console.log("DUPLICATE EMAIL FLASH SET");
-    return res.redirect("/signup");
-}
+        if (e.name === "UserExistsError") {
+            req.flash("error", "This username is already registered. Please choose another username.");
+            return res.redirect("/signup");
+        }
 
         req.flash("error", "Something went wrong. Please try again.");
         return res.redirect("/signup");
