@@ -20,7 +20,6 @@ module.exports.signup = async (req, res, next) => {
             req.flash("success", "Welcome to Exploration!");
             return res.redirect("/listings");
         });
-
     } catch (e) {
         req.flash("error", e.message);
         return res.redirect("/signup");
